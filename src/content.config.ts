@@ -2,29 +2,16 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const projects = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
-    featured: z.boolean().default(false),
-    draft: z.boolean().default(false),
+    work: z.boolean().default(false),
     thumbnail: z.string(),
     repo: z.string().optional(),
-  }),
-});
-
-const posts = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
-  schema: z.object({
-    title: z.string(),
-    excerpt: z.string(),
-    date: z.coerce.date(),
-    tags: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
-    thumbnail: z.string(),
   }),
 });
 
@@ -34,12 +21,12 @@ const timeline = defineCollection({
     title: z.string(),
     description: z.string(),
     organization: z.string().optional(),
-    start: z.string(), // YYYY-MM
+    start: z.string(),
     end: z.union([z.string(), z.literal('present')]),
     category: z.enum(['education', 'work']),
-    relatedPost: z.string().optional(), // e.g. "internship-reflection"
+    relatedPost: z.string().optional(),
     relatedPostLabel: z.string().optional(),
   }),
 });
 
-export const collections = { projects, posts, timeline };
+export const collections = { posts, timeline };

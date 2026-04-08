@@ -2,16 +2,16 @@ import { motion } from 'framer-motion';
 
 type Props = {
   title: string;
-  excerpt: string;
+  description: string;
   href: string;
   date: string;
   tags: string[];
   thumbnail?: string;
 };
 
-export default function PostCard({
+export default function Card({
   title,
-  excerpt,
+  description,
   href,
   date,
   tags,
@@ -27,8 +27,8 @@ export default function PostCard({
       transition={{ duration: 0.25 }}
       className="group relative block overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_20px_60px_rgba(0,0,0,0.28)]"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-400/8 via-transparent to-cyan-400/6 opacity-100" />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-300/60 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/8 via-transparent to-violet-400/8 opacity-100" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
 
       <div className="relative p-5">
         {thumbnail && (
@@ -43,7 +43,7 @@ export default function PostCard({
         )}
 
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-xl font-semibold tracking-tight text-white transition duration-200 group-hover:text-violet-200">
+          <h3 className="text-xl font-semibold tracking-tight text-white transition duration-200 group-hover:text-cyan-200">
             {title}
           </h3>
 
@@ -53,14 +53,14 @@ export default function PostCard({
         </div>
 
         <p className="mt-4 text-sm leading-7 text-zinc-400">
-          {excerpt}
+          {description}
         </p>
 
         <div className="mt-5 flex flex-wrap gap-2.5">
           {tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 transition duration-200 group-hover:border-violet-400/20 group-hover:bg-white/[0.08]"
+              className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 transition duration-200 group-hover:border-cyan-400/20 group-hover:bg-white/[0.08]"
             >
               {tag}
             </span>

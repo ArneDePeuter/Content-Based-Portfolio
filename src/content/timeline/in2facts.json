@@ -1,9 +1,7 @@
 {
   "title": "Internship @In2Facts",
-  "description": "Worked in a team environment on ETL tasks as a software engineering intern.",
+  "description": "Worked in a team environment as a software engineering intern.",
   "start": "2023-06",
   "end": "2025-06",
-  "category": "work",
-  "relatedPost": "In2facts",
-  "relatedPostLabel": "Read More"
+  "category": "work"
 }
