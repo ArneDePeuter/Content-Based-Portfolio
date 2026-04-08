@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.excerpt}>
+  <Navbar />
+  <main class="mx-auto max-w-3xl px-6 py-20">
+    <p class="text-sm uppercase tracking-[0.16em] text-zinc-500">Blog post</p>
+    <h1 class="mt-4 text-4xl font-semibold tracking-tight text-white">{post.data.title}</h1>
+    <p class="mt-4 text-lg leading-8 text-zinc-400">{post.data.excerpt}</p>
+
+    <div class="mt-6 flex flex-wrap gap-2">
+      {post.data.tags.map((tag: string) => (
+        <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">{tag}</span>
+      ))}
+    </div>
+
+    <article
+      class="prose prose-invert prose-zinc mt-12 max-w-none
+            prose-headings:scroll-mt-24
+            prose-h1:text-4xl prose-h1:font-semibold
+            prose-h2:text-2xl prose-h2:font-semibold
+            prose-p:leading-8
+            prose-li:leading-7
+            prose-a:no-underline hover:prose-a:underline"
+    >
+      <Content />
+    </article>
+  </main>
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Arne Portfolio',
+  description = 'Portfolio, projects, and blog.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-zinc-950 text-zinc-100 antialiased selection:bg-cyan-400/30 selection:text-white">
+    <div class="fixed inset-0 -z-50 bg-zinc-950"></div>
+    <slot />
+  </body>
+</html>
