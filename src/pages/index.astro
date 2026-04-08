@@ -24,6 +24,8 @@ const timelineItems = timelineEntries.map((entry) => ({
   href: entry.data.relatedPost ? `/blog/${entry.data.relatedPost}` : undefined,
   hrefLabel: entry.data.relatedPostLabel,
 }));
+
+const currentYear = new Date().getFullYear();
 ---
 
 <BaseLayout title="Portfolio - Arne De Peuter" description="Projects, writing, and background.">
@@ -84,4 +86,35 @@ const timelineItems = timelineEntries.map((entry) => ({
 </div>
     </section>
   </main>
+  
+<footer class="mx-auto mt-16 max-w-6xl border-t border-white/10 px-6 py-8">
+    <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-sm text-zinc-400">
+          © {currentYear} Arne De Peuter.
+        </p>
+        <p class="mt-2 text-sm text-zinc-500">
+          Open to contact via email or LinkedIn.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="mailto:arne@depeuter.org"
+          class="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:-translate-y-0.5 hover:border-cyan-400/40 hover:bg-cyan-400/15"
+        >
+          Email
+        </a>
+
+        <a
+          href="https://linkedin.com/in/arne-de-peuter-4055a6267"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:-translate-y-0.5 hover:border-cyan-400/40 hover:bg-cyan-400/15"
+        >
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </footer>
 </BaseLayout>
