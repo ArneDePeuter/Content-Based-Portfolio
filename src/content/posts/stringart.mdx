@@ -1,0 +1,39 @@
+---
+title: "String Art"
+description: "String and nail art generator"
+date: "2023-7-23"
+tags: ["Python", "Art"]
+thumbnail: https://github.com/ArneDePeuter/StringArt/blob/main/output/obamaman.jpg?raw=true
+repo: https://github.com/ArneDePeuter/StringArt
+---
+
+Generate string art from images using a greedy algorithm that simulates wrapping thread between nails on a circular board.
+
+With the goal to generate such images:
+![img](https://blessgifters.com/cdn/shop/files/CreateYourOwnUniqueDIYStringArtPortrait.webp?v=1730918053)
+
+## Algorithm
+
+1. **Preprocess**
+   - Resize image
+   - Convert to grayscale
+
+2. **Initialize**
+   - Place `nail_amount` nails on a circle
+   - Set per-nail connection limit
+
+3. **Greedy Step**
+   - For all valid nail pairs:
+     - Score line = sum of pixel intensities along line
+   - Pick best line
+   - Subtract intensity along that line
+   - Update nail connection counts
+
+4. **Repeat**
+   - Run for `n` iterations or until constraints are hit
+
+## Constraints
+
+- `max_connections`: max lines per nail  
+- `thread_length`: total available thread  
+- Pixel values are reduced and clamped ≥ 0  
