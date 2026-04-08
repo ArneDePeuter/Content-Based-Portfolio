@@ -1,0 +1,23 @@
+---
+title: "Chess engine"
+description: "Chess enigne with minimax using bitboards"
+date: "2023-04-29"
+tags: ["UAntwerpen", "C++", "bitboards", "minimax"]
+thumbnail: https://upload.wikimedia.org/wikipedia/commons/6/6f/ChessSet.jpg
+repo: https://github.com/ArneDePeuter/ChessEngine
+---
+
+## Overview
+
+A chess engine written in C++ that uses bitboards for efficient board representation and move generation. The engine implements the minimax algorithm with alpha-beta pruning to evaluate positions and select optimal moves, enabling adversarial AI gameplay.
+
+This project is a reiteration of a project from the Introduction to Programming course at the University of Antwerp. In the following semester, I reimplemented the engine with a cleaner architecture and improved code organization.
+
+## Features
+
+- Bitboard-based board representation for performance
+- Legal move generation (including castling, en passant, promotion)
+- Minimax search with alpha-beta pruning
+- Basic evaluation function (material + positional heuristics)
+- Move ordering to improve pruning efficiency
+- Command-line interface to play against the engine
