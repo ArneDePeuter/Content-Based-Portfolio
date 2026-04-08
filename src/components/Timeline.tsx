@@ -4,6 +4,7 @@ type TimelineItem = {
   id: string;
   title: string;
   description: string;
+  organization?: string;
   start: string; // YYYY-MM
   end: string | 'present'; // YYYY-MM or 'present'
   category: 'education' | 'work';
@@ -38,15 +39,15 @@ function formatRange(start: string, end: string | 'present') {
 
 function sortItems(items: TimelineItem[]) {
   return [...items].sort((a, b) => {
-    const aEnd = toDate(a.end, true).getTime();
-    const bEnd = toDate(b.end, true).getTime();
-
-    if (bEnd !== aEnd) return bEnd - aEnd;
-
     const aStart = toDate(a.start).getTime();
     const bStart = toDate(b.start).getTime();
 
-    return bStart - aStart;
+    if (bStart !== aStart) return bStart - aStart;
+
+    const aEnd = toDate(a.end, true).getTime();
+    const bEnd = toDate(b.end, true).getTime();
+
+    return bEnd - aEnd;
   });
 }
 
@@ -106,13 +107,19 @@ export default function Timeline({ items }: Props) {
                     {formatRange(item.start, item.end)}
                   </p>
 
-                  <h4 className="mt-1 text-lg font-semibold text-white transition group-hover:text-zinc-100">
-                    {item.title}
-                  </h4>
+                <h4 className="mt-1 text-lg font-semibold text-white transition group-hover:text-zinc-100">
+                {item.title}
+                </h4>
 
-                  <p className="mt-3 text-sm leading-7 text-zinc-400 transition group-hover:text-zinc-300">
-                    {item.description}
-                  </p>
+                {item.organization && (
+                <p className="mt-1 text-sm font-medium text-zinc-500 transition group-hover:text-zinc-400">
+                    {item.organization}
+                </p>
+                )}
+
+                <p className="mt-3 text-sm leading-7 text-zinc-400 transition group-hover:text-zinc-300">
+                {item.description}
+                </p>
 
                   {item.href && (
                     <a

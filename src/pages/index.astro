@@ -20,6 +20,7 @@ const timelineEntries = await getCollection('timeline');
 const timelineItems = timelineEntries.map((entry) => ({
   id: entry.id,
   title: entry.data.title,
+  organization: entry.data.organization,
   description: entry.data.description,
   start: entry.data.start,
   end: entry.data.end,
@@ -63,7 +64,8 @@ const timelineItems = timelineEntries.map((entry) => ({
               month: 'short',
               day: 'numeric',
             })}
-            tags={project.data.tags}
+            tags={project.data.tags},
+			thumbnail={project.data.thumbnail}
           />
         ))}
       </div>
@@ -91,7 +93,8 @@ const timelineItems = timelineEntries.map((entry) => ({
               month: 'short',
               day: 'numeric',
             })}
-            tags={post.data.tags}
+            tags={post.data.tags},
+			thumbnail={post.data.thumbnail}
           />
         ))}
       </div>

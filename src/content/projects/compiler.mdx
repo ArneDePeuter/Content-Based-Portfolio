@@ -1,0 +1,29 @@
+---
+title: "C-Compiler"
+description: "A subset implementation of the C-compiler"
+date: "2024-06-02"
+tags: ["UAntwerpen", "python", "LLVM"]
+featured: true
+draft: false
+thumbnail: https://llvm.org/img/DragonFull.png
+repo: https://github.com/ArneDePeuter/UA-2024-Compiler
+---
+
+## Overview
+
+This project is a compiler for a subset of the C programming language, developed in Python as part of the University of Antwerp coursework. 
+It uses ANTLR for parsing and includes the full compilation pipeline: parsing source code into an AST, semantic analysis with symbol table generation, optimization passes such as constant folding and constant propagation, and code generation to both LLVM IR and MIPS.
+
+## Features
+
+- Parsing a subset of C using ANTLR
+- Abstract Syntax Tree generation and visualization
+- Symbol table generation and scoped semantic analysis
+- Constant folding and constant propagation optimizations
+- Type checking and semantic error detection
+- Support for variables, pointers, casts, and implicit conversions
+- Control flow support including `if`, `else`, `while`, `for`, `switch`, `break`, and `continue`
+- Support for functions, local/global scope, and enums
+- Code generation to LLVM IR
+- Code generation to MIPS
+- etc...

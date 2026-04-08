@@ -1,0 +1,32 @@
+---
+title: "Software Graphics Engine"
+description: "A CPU-based rendering engine"
+date: "2023-06-01"
+tags: ["UAntwerpen", "C++"]
+featured: true
+draft: false
+thumbnail: https://github.com/ArneDePeuter/UA-2023-GraphicsEngine/raw/main/readmeFiles/spec2.png
+repo: https://github.com/ArneDePeuter/UA-2023-GraphicsEngine
+---
+
+## Overview
+
+This project is a software-based graphics engine built for the Computer Graphics course at the University of Antwerp.
+
+Instead of relying on GPU APIs like OpenGL, the engine implements the full rendering pipeline on the CPU. It generates 2D images from 3D scenes, focusing on fundamental graphics concepts such as projections, lighting, and visibility.
+
+## Features
+
+- 2D and 3D L-systems (including bracketed systems)
+- Wireframe rendering and line drawing
+- Z-buffering (lines and triangles)
+- 3D object generation (Platonic solids, spheres, cylinders, etc.)
+- Fractal generation (e.g., Menger sponge, Buckyball)
+- Lighting model:
+  - Ambient lighting
+  - Diffuse lighting (directional + point lights)
+  - Specular highlights
+- Shadow computation
+- 3D transformations and projections
+- INI-based scene configuration
+

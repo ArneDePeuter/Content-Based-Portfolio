@@ -11,6 +11,8 @@ const projects = defineCollection({
     tags: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
+    thumbnail: z.string(),
+    repo: z.string().optional(),
   }),
 });
 
@@ -22,6 +24,7 @@ const posts = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    thumbnail: z.string(),
   }),
 });
 
@@ -30,6 +33,7 @@ const timeline = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    organization: z.string().optional(),
     start: z.string(), // YYYY-MM
     end: z.union([z.string(), z.literal('present')]),
     category: z.enum(['education', 'work']),
