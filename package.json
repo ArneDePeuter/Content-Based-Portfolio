@@ -7,8 +7,9 @@
   },
   "scripts": {
     "llms": "node scripts/generate-llms.mjs",
+    "cv": "node scripts/export-cv.mjs",
     "dev": "astro dev",
-    "build": "npm run llms && astro build",
+    "build": "npm run llms && npm run cv && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -25,6 +26,7 @@
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "@tailwindcss/typography": "^0.5.19",
+    "puppeteer": "^24.42.0"
   }
 }

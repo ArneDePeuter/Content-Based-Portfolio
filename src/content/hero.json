@@ -1,0 +1,50 @@
+{
+  "tagline": "Computer Science Masters Student",
+  "headline": "I like to build systems and work with data,",
+  "headlineAccent": "focusing on structure and performance.",
+  "firstName": "Arne",
+  "lastName": "De Peuter",
+  "dateOfBirth": "2003-01-05",
+  "location": "Antwerp, Belgium",
+  "nationality": "Belgian, USA",
+  "languages": [
+    { "name": "Dutch", "level": "Native" },
+    { "name": "English", "level": "Fluent" },
+    { "name": "French", "level": "Intermediate" },
+    { "name": "German", "level": "Basic" }
+  ],
+  "email": "arne@depeuter.org",
+  "profileImage": "/images/profile.jpg",
+  "bio": [
+    "I'm mainly interested in how systems are designed and how data moves through them. Most of my work sits between backend development, data engineering, and machine learning.",
+    "I like working on systems end-to-end, from designing architecture to building the backend and experimenting with data and models on top of it."
+  ],
+  "socialLinks": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/arne-de-peuter" },
+    { "label": "GitHub", "url": "https://github.com/ArneDePeuter" },
+    { "label": "LeetCode", "url": "https://leetcode.com/ArneDP" }
+  ],
+  "techStack": [
+    { "name": "Python", "icon": "python" },
+    { "name": "FastAPI", "icon": "fastapi" },
+    { "name": "Pandas", "icon": "pandas" },
+    { "name": "NumPy", "icon": "numpy" },
+    { "name": "scikit-learn", "icon": "scikitlearn" },
+    { "name": "PyTorch", "icon": "pytorch" },
+    { "name": "Dlt", "icon": "dlthub" },
+    { "name": "LangGraph", "icon": "langgraph" },
+    { "name": "C", "icon": "c" },
+    { "name": "C++", "icon": "c++" },
+    { "name": "Rust", "icon": "rust" },
+    { "name": "Ollama", "icon": "ollama" },
+    { "name": "React", "icon": "react" },
+    { "name": "Docker", "icon": "docker" },
+    { "name": "Kubernetes", "icon": "kubernetes" },
+    { "name": "PostgreSQL", "icon": "postgresql" },
+    { "name": "Auth0", "icon": "auth0" },
+    { "name": "Nginx", "icon": "nginx" },
+    { "name": "mosquitto", "icon": "eclipsemosquitto" },
+    { "name": "Git", "icon": "git" },
+    { "name": "Linux", "icon": "linux" }
+  ]
+}

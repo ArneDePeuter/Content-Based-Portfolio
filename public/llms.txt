@@ -24,13 +24,42 @@ All source markdown and JSON files:
 
 
 
+## FILE: src/content/posts/chess.mdx
+
+---
+title: "Chess engine"
+description: "Chess enigne with minimax using bitboards"
+date: "2023-04-29"
+tags: ["UAntwerpen", "C++", "bitboards", "minimax"]
+thumbnail: https://upload.wikimedia.org/wikipedia/commons/6/6f/ChessSet.jpg
+repo: https://github.com/ArneDePeuter/ChessEngine
+---
+
+## Overview
+
+A chess engine written in C++ that uses bitboards for efficient board representation and move generation. The engine implements the minimax algorithm with alpha-beta pruning to evaluate positions and select optimal moves, enabling adversarial AI gameplay.
+
+This project is a reiteration of a project from the Introduction to Programming course at the University of Antwerp. In the following semester, I reimplemented the engine with a cleaner architecture and improved code organization.
+
+## Features
+
+- Bitboard-based board representation for performance
+- Legal move generation (including castling, en passant, promotion)
+- Minimax search with alpha-beta pruning
+- Basic evaluation function (material + positional heuristics)
+- Move ordering to improve pruning efficiency
+- Command-line interface to play against the engine
+
+
+
+
 ## FILE: src/content/posts/compiler.mdx
 
 ---
 title: "C-Compiler"
 description: "A subset implementation of the C-compiler"
 date: "2024-06-02"
-tags: ["UAntwerpen", "python", "LLVM"]
+tags: ["UAntwerpen", "Python", "LLVM"]
 thumbnail: https://llvm.org/img/DragonFull.png
 repo: https://github.com/ArneDePeuter/UA-2024-Compiler
 ---
@@ -52,7 +81,6 @@ It uses ANTLR for parsing and includes the full compilation pipeline: parsing so
 - Support for functions, local/global scope, and enums
 - Code generation to LLVM IR
 - Code generation to MIPS
-- etc...
 
 
 
@@ -63,7 +91,7 @@ It uses ANTLR for parsing and includes the full compilation pipeline: parsing so
 title: "Deppy"
 description: "A dependency executor for Python that empowers developers to design, build, and execute DAGs"
 date: "2025-06-14"
-tags: ["Python", "library", "DAG"]
+tags: ["Python", "Library", "DAG"]
 repo: https://github.com/ArneDePeuter/deppy
 thumbnail: https://upload.wikimedia.org/wikipedia/commons/4/4d/Ball_python_lucy.JPG
 ---
@@ -149,6 +177,54 @@ Overall, this internship provided exposure to real-world engineering challenges 
 
 
 
+## FILE: src/content/posts/pacman.mdx
+
+---
+title: "Pacman"
+description: "Pacman game with working ghosts"
+date: "2024-01-7"
+tags: ["UAntwerpen", "C++", "Game", "A*"]
+thumbnail: https://media.wired.com/photos/59344068a88f414d9a8c9e97/3:2/w_2560%2Cc_limit/pacman10_gameplay-highres.png
+repo: https://github.com/ArneDePeuter/UA-2024-Pacman
+---
+
+## Overview
+
+This project is a Pacman game implemented in C++ as part of the Advanced Programming course at the University of Antwerp.
+
+The game features AI-controlled ghosts using the A* pathfinding algorithm. It applies modern C++ practices and emphasizes clean architecture and separation of concerns.
+
+Key design aspects include:
+- Use of smart pointers for memory management
+- Application of design patterns such as Observer and Model-View-Controller (MVC)
+- Clear separation between game logic and rendering
+
+The core game logic is implemented as a reusable Pacman library, while a custom UI system is built on top to handle rendering and interaction.
+
+
+
+## FILE: src/content/posts/rbfa.mdx
+
+---
+title: "Bachelors thesis: RBFA chatbot"
+description: "A multipurpose chatbot for the royal belgian football association"
+date: "2025-06-01"
+tags: ["UAntwerpen", "Python", "RBFA"]
+thumbnail: https://i.vimeocdn.com/video/1661263705-04ce014077fd3f4424e07f1c5fa7bbcbf863676e9d964a068888c879a2a47998-d?f=webp
+---
+
+For my bachelor’s thesis at University of Antwerp, I worked on a large-scale group project with around 40 computer science students. It was the first time we tackled something of this size, which made coordination and structure a significant part of the challenge.
+
+Within the team, I naturally took on a leadership role, while not the main lead, I was one of the more experienced members helping guide decisions and progress.
+
+The project itself was developed in collaboration with the Royal Belgian Football Association. The platform combined multiple components, including user management, video analysis, and a player database. At its core was a chatbot designed as a central access point, allowing users to query different parts of the system through a unified interface.
+
+Due to NDA restrictions, I cannot share the repository or go into full technical detail. However, the system was built as a production-grade microservices architecture backed by a PostgreSQL database. The backend integrated data mining pipelines, computer vision models based on YOLO, and RAG workflow orchestration using LlamaIndex.
+
+Overall, the project was a strong introduction to working on complex, distributed systems in a large team setting, with an emphasis on real-world constraints and collaboration.
+
+
+
 ## FILE: src/content/posts/solarin.mdx
 
 ---
@@ -177,6 +253,51 @@ Players manage a space civilization by building cities, gathering resources, tra
 - Real-time updates using WebSockets
 - Authentication with JWT and secure password hashing
 - Fully database-driven architecture using PostgreSQL
+
+
+
+
+## FILE: src/content/posts/stringart.mdx
+
+---
+title: "String Art"
+description: "String and nail art generator"
+date: "2023-7-23"
+tags: ["Python", "Art", "4Fun"]
+thumbnail: https://github.com/ArneDePeuter/StringArt/blob/main/output/obamaman.jpg?raw=true
+repo: https://github.com/ArneDePeuter/StringArt
+---
+
+Generate string art from images using a greedy algorithm that simulates wrapping thread between nails on a circular board.
+
+With the goal to generate such images:
+![img](https://blessgifters.com/cdn/shop/files/CreateYourOwnUniqueDIYStringArtPortrait.webp?v=1730918053)
+
+## Algorithm
+
+1. **Preprocess**
+   - Resize image
+   - Convert to grayscale
+
+2. **Initialize**
+   - Place `nail_amount` nails on a circle
+   - Set per-nail connection limit
+
+3. **Greedy Step**
+   - For all valid nail pairs:
+     - Score line = sum of pixel intensities along line
+   - Pick best line
+   - Subtract intensity along that line
+   - Update nail connection counts
+
+4. **Repeat**
+   - Run for `n` iterations or until constraints are hit
+
+## Constraints
+
+- `max_connections`: max lines per nail  
+- `thread_length`: total available thread  
+- Pixel values are reduced and clamped ≥ 0  
 
 
 
