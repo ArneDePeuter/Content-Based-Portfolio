@@ -106,7 +106,13 @@ function buildHtml(hero, timeline, posts) {
   const education = timeline.filter((e) => e.category === 'education');
   const projects = posts.filter((p) => !p.work);
 
-  const contactItems = [location, nationality, `Born ${dob} (age ${age})`, languages.map((l) => `${l.name} (${l.level})`).join(' · ')];
+  const label = (l) => `<span style="color:#94a3b8;font-size:7.5pt;margin-right:3px;">${l}:</span>`;
+  const contactItems = [
+    `${label('Location')}${location}`,
+    `${label('Nationality')}${nationality}`,
+    `${label('Born')}${dob} (${age})`,
+    `${label('Languages')}${languages.map((l) => `${l.name} (${l.level})`).join(' · ')}`,
+  ];
   const links = [...socialLinks.map(({ label, url }) => `<a href="${url}">${label}</a>`), `<a href="${PORTFOLIO_URL}">Informal Portfolio</a>`].join(' · ');
 
   const projectsHtml = projects.map(({ title, description, tags = [], repo, date }) => `
