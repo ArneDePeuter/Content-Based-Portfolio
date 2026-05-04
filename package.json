@@ -9,7 +9,7 @@
     "llms": "node scripts/generate-llms.mjs",
     "cv": "node scripts/export-cv.mjs",
     "dev": "astro dev",
-    "build": "npm run llms && npm run cv && astro build",
+    "build": "npm run llms && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
