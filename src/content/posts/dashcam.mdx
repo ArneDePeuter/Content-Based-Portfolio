@@ -11,7 +11,7 @@ repo: https://github.com/ArneDePeuter/UA-2026-Dashcam
 
 An end-to-end IoT dashcam system that detects car crashes in real time using on-device machine learning and multi-sensor fusion. When a crash is detected, the system automatically captures a video clip, extracts GPS and accelerometer windows around the event, and uploads everything to a cloud backend accessible through a web dashboard.
 
-## Edge ML: SOTA Diluted for the Real World
+### Edge ML: SOTA Diluted for the Real World
 
 The ML pipeline is inspired by the **Dynamic-Spatial-Attention RNN (DSA-RNN)** from Chan et al. (2016), a state-of-the-art crash anticipation model using Faster R-CNN, VGG16, and spatial attention. Running that on a Google Coral Dev Board is a non-starter, so the architecture was rethought from the ground up for Edge TPU constraints.
 
@@ -23,7 +23,7 @@ The ML pipeline is inspired by the **Dynamic-Spatial-Attention RNN (DSA-RNN)** f
 
 Training was done in a **Google Colab** environment on a L4 GPU.
 
-## Firmware
+### Firmware
 
 | Device | Role |
 |--------|------|
@@ -31,7 +31,7 @@ Training was done in a **Google Colab** environment on a L4 GPU.
 | Pycom Pysense | Acceleration trigger from crashing (> 2.5G) |
 | Pycom Pytrack | Location context |
 
-## Cloud
+### Cloud
 
 - **Backend:** async FastAPI + PostgreSQL + Traefik, Auth0 JWT, API key auth for devices
 - **Webapp:** React + TypeScript + Auth0
