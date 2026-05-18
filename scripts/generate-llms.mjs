@@ -9,19 +9,31 @@ const CONTENT_DIRS = [
   'src/content/posts',
 ];
 
-const PERSONAL_INFO = `# Arne De Peuter
+const hero = JSON.parse(await fs.readFile(path.join(ROOT, 'src/content/hero.json'), 'utf8'));
 
-I build backend systems and work with data, focusing on structure and performance.
+const dob = new Date(hero.dateOfBirth);
+const age = new Date().getFullYear() - dob.getFullYear();
+const dobFormatted = dob.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-I am mainly interested in how systems are designed and how data moves through them. Most of my work sits between backend development, data engineering, and machine learning.
+const PERSONAL_INFO = `# ${hero.firstName} ${hero.lastName}
+${hero.tagline}
 
-I like working on systems end-to-end, from designing architecture to building the backend and experimenting with data and models on top of it.
+${hero.headline} ${hero.headlineAccent}
+
+${hero.bio.join('\n\n')}
+
+## Personal
+- Date of birth: ${dobFormatted} (age ${age})
+- Location: ${hero.location}
+- Nationality: ${hero.nationality}
+- Languages: ${hero.languages.map((l) => `${l.name} (${l.level})`).join(', ')}
 
 ## Contact
-- Email: arne@depeuter.org
-- LinkedIn: https://linkedin.com/in/arne-de-peuter-4055a6267
-- GitHub: https://github.com/ArneDePeuter
-- LeetCode: https://leetcode.com/ArneDP
+- Email: ${hero.email}
+${hero.socialLinks.map((l) => `- ${l.label}: ${l.url}`).join('\n')}
+
+## Tech Stack
+${hero.techStack.map((t) => t.name).join(', ')}
 
 ## Notes
 - Posts with "work: true" = work experience

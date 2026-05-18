@@ -1,16 +1,26 @@
 # Arne De Peuter
+Computer Science Masters Student
 
-I build backend systems and work with data, focusing on structure and performance.
+I like to build systems and work with data, focusing on structure and performance.
 
-I am mainly interested in how systems are designed and how data moves through them. Most of my work sits between backend development, data engineering, and machine learning.
+I'm mainly interested in how systems are designed and how data moves through them. Most of my work sits between backend development, data engineering, and machine learning.
 
 I like working on systems end-to-end, from designing architecture to building the backend and experimenting with data and models on top of it.
 
+## Personal
+- Date of birth: 5 January 2003 (age 23)
+- Location: Antwerp, Belgium
+- Nationality: Belgian, USA
+- Languages: Dutch (Native), English (Fluent), French (Intermediate), German (Basic)
+
 ## Contact
 - Email: arne@depeuter.org
-- LinkedIn: https://linkedin.com/in/arne-de-peuter-4055a6267
+- LinkedIn: https://linkedin.com/in/arne-de-peuter
 - GitHub: https://github.com/ArneDePeuter
 - LeetCode: https://leetcode.com/ArneDP
+
+## Tech Stack
+Python, FastAPI, Pandas, NumPy, scikit-learn, PyTorch, Dlt, LangGraph, C, C++, Rust, Ollama, React, Docker, Kubernetes, PostgreSQL, Auth0, Nginx, mosquitto, Git, Linux
 
 ## Notes
 - Posts with "work: true" = work experience
@@ -81,6 +91,47 @@ It uses ANTLR for parsing and includes the full compilation pipeline: parsing so
 - Support for functions, local/global scope, and enums
 - Code generation to LLVM IR
 - Code generation to MIPS
+
+
+
+
+## FILE: src/content/posts/dashcam.mdx
+
+---
+title: "Dashcam"
+description: "IoT system that detects car crashes using on-device ML and sensor fusion"
+date: "2026-05-18"
+tags: ["UAntwerpen", "IOT", "ML"]
+thumbnail: https://raw.githubusercontent.com/ArneDePeuter/UA-2026-Dashcam/refs/heads/master/docs/image.png
+repo: https://github.com/ArneDePeuter/UA-2026-Dashcam
+---
+
+## Overview
+
+An end-to-end IoT dashcam system that detects car crashes in real time using on-device machine learning and multi-sensor fusion. When a crash is detected, the system automatically captures a video clip, extracts GPS and accelerometer windows around the event, and uploads everything to a cloud backend accessible through a web dashboard.
+
+### Edge ML: SOTA Diluted for the Real World
+
+The ML pipeline is inspired by the **Dynamic-Spatial-Attention RNN (DSA-RNN)** from Chan et al. (2016), a state-of-the-art crash anticipation model using Faster R-CNN, VGG16, and spatial attention. Running that on a Google Coral Dev Board is a non-starter, so the architecture was rethought from the ground up for Edge TPU constraints.
+
+**Two-stage inference:**
+
+- **MobileNetV2 (int8, Edge TPU)** replaces VGG16 as the feature extractor. Fine-tuned on the [Car Crash Dataset (CCD)](https://github.com/Cogito2012/CarCrashDataset) using transfer learning. Fine-tuned in **Google Colab** on GPU.
+
+- **LSTM (NumPy, ARM CPU)** trained in **Google Colab** on 10-frame sliding windows of fine tuned MobileNetV2 embeddings.
+
+### Firmware
+
+| Device | Role |
+|--------|------|
+| Coral Dev Board | ML crash detection |
+| Pycom Pysense | Acceleration trigger from crashing (> 2.5G) |
+| Pycom Pytrack | Location context |
+
+### Cloud
+
+- **Backend:** async FastAPI + PostgreSQL + Traefik, Auth0 JWT, API key auth for devices
+- **Webapp:** React + TypeScript + Auth0
 
 
 
