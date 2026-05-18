@@ -3,7 +3,7 @@ title: "Dashcam"
 description: "IoT system that detects car crashes using on-device ML and sensor fusion"
 date: "2026-05-18"
 tags: ["UAntwerpen", "IOT", "ML"]
-thumbnail: https://github.com/ArneDePeuter/UA-2026-Dashcam/blob/master/docs/image.png
+thumbnail: https://raw.githubusercontent.com/ArneDePeuter/UA-2026-Dashcam/refs/heads/master/docs/image.png
 repo: https://github.com/ArneDePeuter/UA-2026-Dashcam
 ---
 
@@ -22,8 +22,6 @@ The ML pipeline is inspired by the **Dynamic-Spatial-Attention RNN (DSA-RNN)** f
 - **MobileNetV2 (int8, Edge TPU)** replaces VGG16 as the feature extractor. Fine-tuned on the [Car Crash Dataset (CCD)](https://github.com/Cogito2012/CarCrashDataset) using transfer learning. Fine-tuned in **Google Colab** on GPU.
 
 - **LSTM (NumPy, ARM CPU)** trained in **Google Colab** on 10-frame sliding windows of fine tuned MobileNetV2 embeddings.
-
-**Sequence-level metrics on CCD test set:** F1 0.70, Recall 0.81, Accuracy 0.92.
 
 ### Sensors
 
