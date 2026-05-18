@@ -1,0 +1,41 @@
+---
+title: "Dashcam"
+description: "IoT system that detects car crashes using on-device ML and sensor fusion"
+date: "2026-05-18"
+tags: ["UAntwerpen", "IOT", "ML"]
+thumbnail: https://github.com/ArneDePeuter/UA-2026-Dashcam/blob/master/docs/image.png
+repo: https://github.com/ArneDePeuter/UA-2026-Dashcam
+---
+
+## Overview
+
+An end-to-end IoT dashcam system that detects car crashes in real time using on-device machine learning and multi-sensor fusion. When a crash is detected, the system automatically captures a video clip, extracts GPS and accelerometer windows around the event, and uploads everything to a cloud backend accessible through a web dashboard.
+
+## Features
+
+### Edge ML: SOTA Diluted for the Real World
+
+The ML pipeline is inspired by the **Dynamic-Spatial-Attention RNN (DSA-RNN)** from Chan et al. (2016), a state-of-the-art crash anticipation model using Faster R-CNN, VGG16, and spatial attention. Running that on a Google Coral Dev Board is a non-starter, so the architecture was rethought from the ground up for Edge TPU constraints.
+
+**Two-stage inference:**
+
+- **MobileNetV2 (int8, Edge TPU)** replaces VGG16 as the feature extractor. Fine-tuned on the [Car Crash Dataset (CCD)](https://github.com/Cogito2012/CarCrashDataset) using transfer learning. Fine-tuned in **Google Colab** on GPU.
+
+- **LSTM (NumPy, ARM CPU)** trained in **Google Colab** on 10-frame sliding windows of fine tuned MobileNetV2 embeddings.
+
+**Sequence-level metrics on CCD test set:** F1 0.70, Recall 0.81, Accuracy 0.92.
+
+### Sensors
+
+Three independent data streams are fused for detection and context:
+
+| Sensor | Device | Rate | Role |
+|--------|--------|------|------|
+| Camera | Coral Dev Board | 10 fps | ML crash detection |
+| Accelerometer (LIS2HH12) | Pycom Pysense | 5 Hz | Threshold fallback (> 2.5G) |
+| GPS (L76GNSS) | Pycom Pytrack | 1 Hz | Location context |
+
+### Cloud
+
+- **Backend:** async FastAPI + PostgreSQL + Traefik, Auth0 JWT for the webapp, API key auth for devices.
+- **Webapp:** React + TypeScript
