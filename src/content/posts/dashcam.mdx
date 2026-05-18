@@ -17,9 +17,11 @@ The ML pipeline is inspired by the **Dynamic-Spatial-Attention RNN (DSA-RNN)** f
 
 **Two-stage inference:**
 
-- **MobileNetV2 (int8, Edge TPU)** replaces VGG16 as the feature extractor. Fine-tuned on the [Car Crash Dataset (CCD)](https://github.com/Cogito2012/CarCrashDataset) using transfer learning. Fine-tuned in **Google Colab** on GPU.
+- **Fine tuned MobileNetV2** replaces VGG16 as the feature extractor. Fine-tuned on the [Car Crash Dataset (CCD)](https://github.com/Cogito2012/CarCrashDataset)
 
-- **LSTM (NumPy, ARM CPU)** trained in **Google Colab** on 10-frame sliding windows of fine tuned MobileNetV2 embeddings.
+- **LSTM** 10-frame sliding windows of fine tuned MobileNetV2 embeddings.
+
+Training was done in a **Google Colab** environment on a L4 GPU.
 
 ### Firmware
 
