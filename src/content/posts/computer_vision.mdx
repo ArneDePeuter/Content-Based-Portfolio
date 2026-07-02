@@ -1,0 +1,24 @@
+---
+title: "Fashion Computer Vision"
+description: "A computer vision system for a fashion platform that can: classify clothing items, retrieve visually similar items, run efficiently on limited hardware"
+date: "2026-06-30"
+tags: ["UAntwerpen", "AI", "CNN"]
+thumbnail: https://www.flatworldsolutions.com/featured-images/applications-of-convolutional-neural-networks.webp
+repo: https://github.com/ArneDePeuter/UA-2026-Fashion-Computer-Vision/tree/main
+---
+
+## Overview
+
+Built for the **Artificial Neural Networks** course at UAntwerp, applying the theory and best practices from the course to a small computer vision system for a fashion platform: classify clothing, find visually similar items, and keep it light enough to run on limited hardware.
+
+## Part A: Picking a backbone
+
+Compared a standard CNN against a depthwise separable CNN. The separable version won outright: more accurate, and about 3x fewer parameters and FLOPs.
+
+## Part B: Learning similarity
+
+Repurposed that backbone and trained it with triplet loss to produce embeddings for retrieval instead of just classification. Result: a correct match lands in the top-1 result ~84% of the time, and in the top-5 ~93% of the time.
+
+## Part C: Shrinking it further
+
+Tried pruning and knowledge distillation on the retrieval model. Pruning preserved accuracy but gave no real speedup without sparse-aware hardware. Distillation traded some top-1 accuracy for a genuine ~3x smaller, ~3x cheaper model that still finds a correct match in its top-5 ~90% of the time.
