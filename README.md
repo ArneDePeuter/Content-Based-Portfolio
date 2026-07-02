@@ -1,43 +1,20 @@
-# Astro Starter Kit: Minimal
+# Content based portfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+`!Aware: this project is fully vibe-coded! :)`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+A content-based personal portfolio built with [Astro](https://astro.build). Nothing is hardcoded in the UI — projects, work experience, education, and personal info all come from content files, so updating the site means editing content, not code.
 
-## 🚀 Project Structure
+## Content model
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Projects & work experience** — `src/content/posts/*.mdx`. Each post has frontmatter (`title`, `description`, `date`, `tags`, `work`, `thumbnail`, `repo`) plus MDX body. Set `work: true` for a job, `work: false` (default) for a personal project.
+- **Timeline** — `src/content/timeline/*.json`. One JSON file per entry (education or work), with `start`/`end` dates and `category: "education" | "work"`. Can optionally link to a related post via `relatedPost`.
+- **Personal info** — `src/content/hero.json`. Name, tagline, bio, location, languages, contact/social links, and tech stack.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Generated artifacts
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **`public/llms.txt`** — a plain-text summary of the site's content (personal info, tech stack, timeline, posts), generated automatically from the content files so an LLM can be pointed at it directly. Built via `npm run llms` ([scripts/generate-llms.mjs](scripts/generate-llms.mjs)), which also runs automatically as part of `npm run build`.
+- **`public/cv.pdf`** — a formal CV rendered from the same content (hero info + timeline + posts) using Puppeteer. Build it with `npm run cv` ([scripts/export-cv.mjs](scripts/export-cv.mjs)).
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Hosting
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Deployed on [Vercel](https://vercel.com).
