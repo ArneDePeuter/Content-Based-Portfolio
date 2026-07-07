@@ -25,7 +25,7 @@ const details = [
 
   <div>
     <div class="fade-in-up">
-      <p class="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300 sm:text-base">
+      <p class="mb-8 text-sm font-bold uppercase tracking-[0.24em] text-violet-300 sm:text-base">
         {tagline}
       </p>
     </div>
@@ -45,7 +45,7 @@ const details = [
           {firstName} {lastName}
         </h2>
 
-        <div class="col-span-2 max-w-2xl space-y-4 text-sm leading-7 text-zinc-300 sm:col-span-1 sm:col-start-2 sm:text-[15px] sm:leading-8">
+        <div class="col-span-2 max-w-3xl space-y-4 text-base leading-7 text-zinc-300 sm:col-span-1 sm:col-start-2 sm:text-lg sm:leading-8">
           {bio.map((paragraph) => (
             <p>{paragraph}</p>
           ))}
@@ -71,7 +71,7 @@ const details = [
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center justify-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-200 transition hover:-translate-y-0.5 hover:border-blue-400/40 hover:bg-blue-400/15"
+            class="flex items-center justify-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:-translate-y-0.5 hover:border-cyan-400/40 hover:bg-cyan-400/15"
           >
             {link.label}
           </a>

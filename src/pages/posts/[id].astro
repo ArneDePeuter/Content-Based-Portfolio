@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MotionReveal from '../../components/MotionReveal';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -26,23 +25,35 @@ const { Content } = await render(post);
 
     <section class="mx-auto max-w-6xl px-6 py-10 md:py-14">
       <div class="mx-auto max-w-4xl">
+        <a
+          href="/"
+          id="back-link"
+          class="fade-in-up mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition duration-200 hover:text-cyan-300"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5l-5 5 5 5" />
+          </svg>
+          Back
+        </a>
+
         <div class="relative rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] md:p-8">
-          
+
           <div class="absolute inset-0 -z-10 rounded-[28px] bg-gradient-to-br from-cyan-400/8 via-transparent to-violet-400/8"></div>
 
           {post.data.thumbnail && (
-            <MotionReveal client:load>
-              <div class="overflow-hidden rounded-[24px] border border-white/10 bg-white/5">
+            <div class="fade-in-up">
+              <div class="h-[220px] overflow-hidden rounded-[24px] border border-white/10 bg-white/5 sm:h-[320px] md:h-[420px]">
                 <img
                   src={post.data.thumbnail}
                   alt={post.data.title}
-                  class="h-full max-h-[420px] w-full object-cover transition duration-500 hover:scale-[1.015]"
+                  class="h-full w-full object-cover transition duration-500 hover:scale-[1.015]"
+                  loading="eager"
                 />
               </div>
-            </MotionReveal>
+            </div>
           )}
 
-          <MotionReveal client:load delay={0.08}>
+          <div class="fade-in-up" style="animation-delay: 0.08s">
             <div class={post.data.thumbnail ? 'mt-8' : ''}>
               <div class="flex items-center justify-between">
                 <p class="text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">
@@ -86,9 +97,9 @@ const { Content } = await render(post);
                 ))}
               </div>
             </div>
-          </MotionReveal>
+          </div>
 
-          <MotionReveal client:load delay={0.16} mode="onLoad">
+          <div class="fade-in-up" style="animation-delay: 0.16s">
             <article
               class="prose prose-invert prose-zinc mt-12 max-w-none
                 prose-headings:scroll-mt-24
@@ -108,9 +119,23 @@ const { Content } = await render(post);
             >
               <Content />
             </article>
-          </MotionReveal>
+          </div>
         </div>
       </div>
     </section>
   </main>
 </BaseLayout>
+
+<script>
+  const backLink = document.getElementById('back-link');
+
+  backLink?.addEventListener('click', (event) => {
+    const cameFromSameSite =
+      document.referrer && new URL(document.referrer).origin === location.origin;
+
+    if (cameFromSameSite && window.history.length > 1) {
+      event.preventDefault();
+      history.back();
+    }
+  });
+</script>

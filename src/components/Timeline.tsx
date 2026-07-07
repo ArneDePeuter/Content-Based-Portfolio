@@ -61,9 +61,9 @@ function getStyles(category: TimelineItem['category']) {
       };
     case 'work':
       return {
-        text: 'text-emerald-300',
-        border: 'border-emerald-400/30',
-        link: 'text-emerald-300 hover:text-emerald-200',
+        text: 'text-violet-300',
+        border: 'border-violet-400/30',
+        link: 'text-violet-300 hover:text-violet-200',
       };
   }
 }
@@ -80,7 +80,7 @@ export default function Timeline({ items }: Props) {
   return (
     <div className="mt-12 grid gap-8 md:grid-cols-2">
       {lanes.map((lane) => (
-        <div key={lane.title} className="relative">
+        <div key={lane.title} className="relative self-start">
           <div className="mb-6">
             <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">
               {lane.title}
