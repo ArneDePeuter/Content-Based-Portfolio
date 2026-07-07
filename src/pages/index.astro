@@ -48,7 +48,7 @@ const currentYear = new Date().getFullYear();
     <Card
       client:load
       title={post.data.title}
-      description={post.data.excerpt}
+      description={post.data.description}
       href={`/posts/${post.id}`}
       date={post.data.date.toLocaleDateString('en-GB', {
         year: 'numeric',
@@ -72,7 +72,7 @@ const currentYear = new Date().getFullYear();
     <Card
       client:load
       title={post.data.title}
-      description={post.data.excerpt}
+      description={post.data.description}
       href={`/posts/${post.id}`}
       date={post.data.date.toLocaleDateString('en-GB', {
         year: 'numeric',
