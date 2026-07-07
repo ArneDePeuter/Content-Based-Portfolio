@@ -1,8 +1,7 @@
 ---
-import MotionReveal from './MotionReveal';
 import hero from '../content/hero.json';
 
-const { tagline, headline, headlineAccent, firstName, lastName, dateOfBirth, location, nationality, languages, profileImage, bio, socialLinks, techStack } = hero;
+const { tagline, firstName, lastName, dateOfBirth, location, nationality, languages, profileImage, bio, socialLinks, techStack } = hero;
 
 const dob = new Date(dateOfBirth);
 const now = new Date();
@@ -24,122 +23,197 @@ const details = [
 
   <div class="absolute inset-0 -z-10 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:42px_42px]"></div>
 
-  <div class="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-    <MotionReveal client:load>
-      <div>
-        <p class="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300 sm:text-base">
-          {tagline}
+  <div>
+    <div class="fade-in-up">
+      <p class="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300 sm:text-base">
+        {tagline}
+      </p>
+    </div>
+
+    <div class="fade-in-up" style="animation-delay: 0.05s">
+      <div class="grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-4 sm:gap-x-8">
+        <div class="relative row-span-1 h-9 w-9 shrink-0 overflow-hidden rounded-full border border-white/10 bg-white/5 sm:row-span-2 sm:h-40 sm:w-40 sm:rounded-[24px] sm:shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+          <img
+            src={profileImage}
+            alt={`${firstName} ${lastName}`}
+            class="h-full w-full object-cover"
+          />
+          <div class="absolute inset-0 ring-1 ring-cyan-400/20"></div>
+        </div>
+
+        <h2 class="min-w-0 bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-3xl font-semibold tracking-tight text-transparent sm:text-4xl">
+          {firstName} {lastName}
+        </h2>
+
+        <div class="col-span-2 max-w-2xl space-y-4 text-sm leading-7 text-zinc-300 sm:col-span-1 sm:col-start-2 sm:text-[15px] sm:leading-8">
+          {bio.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="fade-in-up" style="animation-delay: 0.08s">
+      <dl class="mt-8 space-y-2.5 text-sm">
+        {details.map(({ label, value }) => (
+          <div class="flex gap-2">
+            <dt class="w-24 shrink-0 font-medium text-zinc-500">{label}</dt>
+            <dd class="text-zinc-300">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="fade-in-up" style="animation-delay: 0.1s">
+      <div class="mt-6 flex flex-wrap gap-2">
+        {socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-200 transition hover:-translate-y-0.5 hover:border-blue-400/40 hover:bg-blue-400/15"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/cv.pdf"
+          download="Arne-De-Peuter-CV.pdf"
+          class="flex items-center justify-center gap-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:-translate-y-0.5 hover:border-cyan-400/40 hover:bg-cyan-400/15"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+          Download CV (PDF)
+        </a>
+        <a
+          href="/llms.txt"
+          download="llms.txt"
+          class="flex items-center justify-center gap-1.5 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-medium text-violet-200 transition hover:-translate-y-0.5 hover:border-violet-400/40 hover:bg-violet-400/15"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+          Download llms.txt
+        </a>
+      </div>
+    </div>
+
+    <div class="fade-in-up" style="animation-delay: 0.15s">
+      <div class="mt-12 border-t border-white/8 pt-10">
+        <p class="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">
+          Tech stack
         </p>
 
-        <h1 class="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-          {headline}
-          <span class="bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-            {headlineAccent}
-          </span>
-        </h1>
-
-        <div class="mt-10">
-          <p class="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">
-            Tech stack
-          </p>
-
-          <div class="flex flex-wrap gap-2.5">
-            {techStack.map((tech) => (
-              <div class="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 transition duration-200 hover:-translate-y-0.5 hover:border-cyan-400/30 hover:bg-white/[0.08]">
+        <div id="tech-stack-marquee" class="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+          <div class="marquee-track flex w-max items-center gap-2.5">
+            {[...techStack, ...techStack].map((tech) => (
+              <div class="group flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 transition duration-200 hover:-translate-y-0.5 hover:border-cyan-400/30 hover:bg-white/[0.08]">
                 <img
                   src={`https://cdn.simpleicons.org/${tech.icon}/ffffff`}
                   alt={tech.name}
                   class="h-4 w-4 shrink-0 opacity-80 transition duration-200 group-hover:opacity-100"
                   loading="lazy"
                 />
-                <span class="text-sm text-zinc-200">{tech.name}</span>
+                <span class="whitespace-nowrap text-sm text-zinc-200">{tech.name}</span>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </MotionReveal>
 
-    <MotionReveal client:load delay={0.1}>
-      <div class="relative mx-auto w-full max-w-md rounded-[28px] border border-white/10 bg-white/[0.04] p-5 sm:p-7 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
-        <div class="absolute inset-0 -z-10 rounded-[28px] bg-gradient-to-br from-cyan-400/8 via-transparent to-violet-400/8"></div>
-
-        <div class="flex flex-col gap-6">
-          <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left">
-            <div class="relative h-28 w-28 shrink-0 overflow-hidden rounded-[24px] border border-white/10 bg-white/5 sm:h-36 sm:w-36">
+        <div id="tech-stack-full" class="hidden flex-wrap gap-2.5">
+          {techStack.map((tech) => (
+            <div class="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-300 transition duration-200 hover:-translate-y-0.5 hover:border-cyan-400/30 hover:bg-white/[0.08]">
               <img
-                src={profileImage}
-                alt="portrait"
-                class="h-full w-full object-cover"
+                src={`https://cdn.simpleicons.org/${tech.icon}/ffffff`}
+                alt={tech.name}
+                class="h-4 w-4 shrink-0 opacity-80 transition duration-200 group-hover:opacity-100"
+                loading="lazy"
               />
-              <div class="absolute inset-0 ring-1 ring-cyan-400/20"></div>
+              <span class="whitespace-nowrap text-sm text-zinc-200">{tech.name}</span>
             </div>
-
-            <div class="min-w-0 flex-1">
-              <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-300/80">
-                About me
-              </p>
-
-              <h2 class="mt-3 bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-2xl font-semibold tracking-tight text-transparent sm:text-3xl">
-                {firstName}<br /><span class="whitespace-nowrap">{lastName}</span>
-              </h2>
-
-            </div>
-          </div>
-
-          <div class="border-t border-white/8 pt-6">
-            <dl class="mb-5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
-              {details.map(({ label, value }) => (
-                <>
-                  <dt class="font-medium text-zinc-500">{label}</dt>
-                  <dd class="text-zinc-300">{value}</dd>
-                </>
-              ))}
-            </dl>
-
-            <div class="space-y-4 text-sm leading-7 text-zinc-300 sm:text-[15px] sm:leading-8">
-              {bio.map((paragraph) => (
-                <p>{paragraph}</p>
-              ))}
-            </div>
-
-            <div class="mt-6 flex flex-wrap gap-2">
-              {socialLinks.map((link) => (
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center justify-center gap-2 rounded-full border border-blue-400/20 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-200 transition hover:-translate-y-0.5 hover:border-blue-400/40 hover:bg-blue-400/15"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="/cv.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center justify-center gap-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:-translate-y-0.5 hover:border-cyan-400/40 hover:bg-cyan-400/15"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-                Formal CV
-              </a>
-              <a
-                href="/llms.txt"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center justify-center gap-1.5 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-medium text-violet-200 transition hover:-translate-y-0.5 hover:border-violet-400/40 hover:bg-violet-400/15"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
-                </svg>
-                llms.txt
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
+
+        <button
+          id="tech-stack-toggle"
+          type="button"
+          aria-expanded="false"
+          class="tech-stack-toggle mx-auto mt-4 flex items-center gap-2 text-xs font-medium text-zinc-500 transition duration-200 hover:text-zinc-300"
+        >
+          <svg
+            class="tech-stack-toggle-icon h-3 w-3 transition-transform duration-200"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 7l5 5 5-5" />
+          </svg>
+          <span id="tech-stack-toggle-label">Expand</span>
+          <svg
+            class="tech-stack-toggle-icon h-3 w-3 transition-transform duration-200"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 7l5 5 5-5" />
+          </svg>
+        </button>
       </div>
-    </MotionReveal>
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-track {
+    animation: marquee 32s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('tech-stack-toggle');
+  const marquee = document.getElementById('tech-stack-marquee');
+  const full = document.getElementById('tech-stack-full');
+  const label = document.getElementById('tech-stack-toggle-label');
+  const icons = document.querySelectorAll('.tech-stack-toggle-icon');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    const next = !expanded;
+
+    toggle.setAttribute('aria-expanded', String(next));
+    marquee?.classList.toggle('hidden', next);
+    full?.classList.toggle('hidden', !next);
+    full?.classList.toggle('flex', next);
+
+    if (label) label.textContent = next ? 'Compact' : 'Expand';
+    icons.forEach((icon) => {
+      (icon as HTMLElement).style.transform = next ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+  });
+</script>
